@@ -1,0 +1,36 @@
+kayttaja->selain:
+note left of selain
+kayttaja kirjottaa osoiteriville
+fullstack-exampleapp.herokuapp.com/notes
+end note
+
+note left of selain
+  kayttaja kirjoittaa tekstikenttään haluamansa 
+  muistiinpanon ja painaa talleta nappia
+end note
+
+note left of palvelin
+  muodostetaan HTML, jossa nakyy olemassa-
+  olevat muistiinpanot kokonaisuudessaan
+end note
+
+selain->palvelin: POST fullstack-exampleapp.herokuapp.com/new_note
+palvelin->selain: status 302, uuden muistiinpanon lahettaminen
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: status 200, muistiinpanojen hakeminen
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: status 200, sivun CSS-koodi
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/main.js
+palvelin->selain: status 200, sivun JavaScript-koodi
+
+selain->palvelin: GET fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: status 200, json-data
+
+note left of selain
+ selain nayttaa palvelimen palauttaman HTML:n
+ johon on haettu palvelimellla jo valmiiksi 
+ olleet ja sinne juuri luodut muistiinpanot
+end note

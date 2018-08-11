@@ -1,0 +1,19 @@
+kayttaja->selain:
+note left of selain
+kayttaja kirjottaa uuden muistiinpanon
+fullstack-exampleapp.herokuapp.com/spa
+-sivulle ja painaa talleta-nappia
+end note
+
+selain->palvelin: POST fullstack-exampleapp.herokuapp.com/spa
+palvelin->selain: status 201, uusi muistiinpano
+
+note left of palvelin
+  muodostetaan HTML missä näkyy kaikki
+  olemassaolevat muistiinpanot
+end note
+
+note left of selain
+ selain näyttää palvelimen palauttaman HTML:n
+ jossa näkyy palvelimelta haetut muistiinpanot
+end note
