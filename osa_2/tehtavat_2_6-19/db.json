@@ -1,0 +1,24 @@
+{
+    "persons": [
+      {
+        "name": "Jukka Pekkanen",
+        "number": "040-123456",
+        "id": 1
+      },
+      {
+        "name": "Maarit Kivisalo",
+        "number": "040-123456",
+        "id": 2
+      },
+      {
+        "name": "Jouko Karttunen",
+        "number": "040-123456",
+        "id": 3
+      },
+      {
+        "name": "Leila Laajasalo",
+        "number": "040-123456",
+        "id": 4
+      }
+    ]
+  }
