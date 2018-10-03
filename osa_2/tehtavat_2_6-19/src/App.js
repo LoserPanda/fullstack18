@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Person from './components/Person';
 import FilterPersons from './components/FilterPersons';
-import axios from 'axios';
+import personService from './services/persons';
 
 class App extends Component {
     constructor(props) {
@@ -16,11 +16,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        const promise = axios.get('http://localhost:3001/persons');
-        promise
-            .then(response => {
-                const persons = response.data;
-                console.log(persons);
+        personService
+            .getAll()
+            .then(persons => {
                 this.setState({ persons });
             })
             .catch(error => {
@@ -45,12 +43,15 @@ class App extends Component {
 
         if (check) {
             console.log('a new person added');
-            const persons = this.state.persons.concat(personObject);
-            this.setState({
-                persons,
-                newName: '',
-                newNumber: ''
-            });
+            personService
+                .create(personObject)
+                .then(response => {
+                    this.setState({
+                        persons: this.state.persons.concat(response),
+                        newName: '',
+                        newNumber: ''
+                    });
+                })
         } else {
             console.log('person already exists!');
             this.setState({

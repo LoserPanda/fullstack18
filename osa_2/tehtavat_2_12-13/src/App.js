@@ -29,12 +29,6 @@ class App extends Component {
     this.setState({ filterCountries: event.target.value });
   }
 
-  selectItem = (id) => {
-    this.setState({
-      selectedItem: id
-    });
-  }
-
   selectItem = (id) => () => {
     this.setState({
       selectedItem: id
