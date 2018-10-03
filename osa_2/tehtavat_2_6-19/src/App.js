@@ -62,6 +62,18 @@ class App extends Component {
 
     }
 
+    deletePerson = (id) => {
+        const result = window.confirm("Postetaanko henkilö " + id + "?")
+        if (result) {
+            personService
+                .remove(id)
+                .then(response => {
+                    const persons = response.data.filter(resp => resp.name !== id);
+                    this.setState({ persons });
+                })
+        }
+    }
+
     handleNameChange = (event) => {
         this.setState({ newName: event.target.value });
     }
@@ -104,7 +116,7 @@ class App extends Component {
                 </form>
                 <h2>Numerot</h2>
                 <ul id="persons">
-                    {personsToShow.map(person => <Person key={person.name} name={person.name} number={person.number} />)}
+                    {personsToShow.map(person => <Person deletePerson={this.deletePerson} key={person.name} id={person.id} name={person.name} number={person.number} />)}
                 </ul>
             </div>
         )
