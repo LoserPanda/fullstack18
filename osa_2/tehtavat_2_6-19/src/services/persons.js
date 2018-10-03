@@ -15,8 +15,8 @@ const remove = (id) => {
     return axios.delete(`${url}/${id}`);
 }
 
-const modify = (id) => {
-    return axios.put(`${url}/${id}`)
+const modify = (id, changedPerson) => {
+    return axios.put(`${url}/${id}`, changedPerson)
 }
 
 export default { getAll, create, remove, modify };

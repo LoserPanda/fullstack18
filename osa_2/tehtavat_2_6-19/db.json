@@ -1,11 +1,6 @@
 {
   "persons": [
     {
-      "name": "Jukka Pekkanen",
-      "number": "040-123456",
-      "id": 1
-    },
-    {
       "name": "Maarit Kivisalo",
       "number": "040-123456",
       "id": 2
@@ -21,14 +16,9 @@
       "id": 4
     },
     {
-      "name": "Kalle Kivistö",
-      "number": "123-123456",
+      "name": "Jukka Pekkanen",
+      "number": "234567898765432",
       "id": 5
-    },
-    {
-      "name": "Jaana Virtanen",
-      "number": "090-098765",
-      "id": 6
     }
   ]
 }

@@ -54,10 +54,27 @@ class App extends Component {
                 })
         } else {
             console.log('person already exists!');
-            this.setState({
-                newName: '',
-                newNumber: ''
-            });
+            const result = window.confirm("Muutetaanko henkilön " + personObject.name + " numeroa?")
+            if (result) {
+                const person = this.state.persons.find(n => n.name === personObject.name);
+                const changedPerson = { ...person, number: personObject.number }
+                console.log(changedPerson);
+                personService
+                    .modify(changedPerson.id, changedPerson)
+                    .then(response => {
+                        console.log(response.data);
+                        this.setState({
+                            persons: this.state.persons.map(e => e.id === changedPerson.id ? changedPerson : e),
+                            newName: '',
+                            newNumber: ''
+                        });
+                    })
+            } else {
+                this.setState({
+                    newName: '',
+                    newNumber: ''
+                });
+            }
         }
 
     }
