@@ -2,23 +2,18 @@
   "persons": [
     {
       "name": "Maarit Kivisalo",
-      "number": "040-123456",
+      "number": "567890",
       "id": 2
     },
     {
-      "name": "Jouko Karttunen",
-      "number": "040-123456",
+      "name": "Jukka Kakkonen",
+      "number": "67378789173",
       "id": 3
     },
     {
-      "name": "Leila Laajasalo",
-      "number": "040-123456",
+      "name": "Keijo Kolmonen",
+      "number": "5678968906",
       "id": 4
-    },
-    {
-      "name": "Jukka Pekkanen",
-      "number": "234567898765432",
-      "id": 5
     }
   ]
 }

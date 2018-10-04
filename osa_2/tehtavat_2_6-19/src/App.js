@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Person from './components/Person';
 import FilterPersons from './components/FilterPersons';
 import personService from './services/persons';
+import Notification from './components/Notification';
 
 class App extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ class App extends Component {
             persons: [],
             newName: '',
             newNumber: '',
-            filterPersons: ''
+            filterPersons: '',
+            success: null
         }
 
     }
@@ -49,8 +51,12 @@ class App extends Component {
                     this.setState({
                         persons: this.state.persons.concat(response),
                         newName: '',
-                        newNumber: ''
+                        newNumber: '',
+                        success: `Uusi henkilö ${personObject.name} lisätty onnistuneesti!`
                     });
+                    setTimeout(() => {
+                        this.setState({ success: null })
+                    }, 5000)
                 })
         } else {
             console.log('person already exists!');
@@ -66,8 +72,12 @@ class App extends Component {
                         this.setState({
                             persons: this.state.persons.map(e => e.id === changedPerson.id ? changedPerson : e),
                             newName: '',
-                            newNumber: ''
+                            newNumber: '',
+                            success: `Henkilön ${personObject.name} puhelinnumeroa muutettu onnistuneesti!!`
                         });
+                        setTimeout(() => {
+                            this.setState({ success: null })
+                        }, 5000)
                     })
             } else {
                 this.setState({
@@ -81,14 +91,23 @@ class App extends Component {
 
     deletePerson = (id) => {
         const result = window.confirm("Postetaanko henkilö " + id + "?")
+        console.log('delete');
+        const persons = this.state.persons.filter(person => person.id !== id);
         if (result) {
             personService
                 .remove(id)
                 .then(response => {
-                    const persons = response.data.filter(resp => resp.name !== id);
-                    this.setState({ persons });
+                    console.log(response);
+                    this.setState({
+                        persons,
+                        success: `Henkilö poistettu onnistuneesti!`
+                    });
+                    setTimeout(() => {
+                        this.setState({ success: null })
+                    }, 5000)
                 })
         }
+
     }
 
     handleNameChange = (event) => {
@@ -104,6 +123,7 @@ class App extends Component {
     }
 
     render() {
+        console.log('render');
         const personsToShow =
             this.state.filterPersons === '' ?
                 this.state.persons :
@@ -112,6 +132,7 @@ class App extends Component {
         return (
             <div>
                 <h1>Puhelinluettelo</h1>
+                <Notification message={this.state.success} />
                 <FilterPersons filterPersons={this.state.filterPersons} handleFilterChange={this.handleFilterChange} />
                 <h2>Lisää uusi</h2>
                 <form onSubmit={this.addPerson} >
@@ -133,7 +154,7 @@ class App extends Component {
                 </form>
                 <h2>Numerot</h2>
                 <ul id="persons">
-                    {personsToShow.map(person => <Person deletePerson={this.deletePerson} key={person.name} id={person.id} name={person.name} number={person.number} />)}
+                    {personsToShow.map(person => <Person deletePerson={this.deletePerson} key={person.id} id={person.id} name={person.name} number={person.number} />)}
                 </ul>
             </div>
         )
