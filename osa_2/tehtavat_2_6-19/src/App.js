@@ -79,6 +79,11 @@ class App extends Component {
                             this.setState({ success: null })
                         }, 5000)
                     })
+                    .catch(err => {
+                        console.log('poistettu jo!!');
+                        alert(`Henkilö '${personObject.name}' on jo valitettavasti poistettu palvelimelta, joten muokkaaminen ei onnistu! Voit lisätä henkilön kokonaan uutena painamalla "lisää".`);
+                        this.setState({ persons: this.state.persons.filter(n => n.name !== personObject.name) })
+                    })
             } else {
                 this.setState({
                     newName: '',
