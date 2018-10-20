@@ -1,12 +1,14 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 
 app.use(bodyParser.json())
+app.use(morgan('tiny'))
 
 let persons = [
     {
-        name: "Kalle Kaveri",
+        name: "Keijo",
         number: "123456",
         id: 1
     },
